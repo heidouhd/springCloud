@@ -15,10 +15,19 @@ import org.slf4j.LoggerFactory;
 import java.sql.Connection;
 import java.util.Properties;
 
+/**
+ * 如果该拦截器中有对象需要初始化 需要在主方法中注入该拦截器
+ *
+ * 写法如下
+ * @Bean
+ * public MyPlugin myPlugin(){
+ * return new MyPlugin();
+ * }
+ */
 @Intercepts({@Signature(type = StatementHandler.class, method = "prepare", args = {Connection.class, Integer.class})})
-public class BuyerPlugin implements Interceptor {
+public class MyPlugin implements Interceptor {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(BuyerPlugin.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(MyPlugin.class);
 
     @Override
     public Object intercept(Invocation invocation) throws Throwable {

@@ -1,9 +1,11 @@
 package com.example.demo;
 
+import com.example.demo.plugin.MyPlugin;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
@@ -15,4 +17,6 @@ public class CloudMybatisApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(CloudMybatisApplication.class, args);
 	}
+
+
 }
