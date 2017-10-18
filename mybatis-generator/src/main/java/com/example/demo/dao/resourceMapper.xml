@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.resourceMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.domain.resource">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="platform_id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="type" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="pid" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="system_default" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="url" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="level" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="owner" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="order_num" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="created" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="updated" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="yn" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="code" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="icon" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="target" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="html_code" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, platform_id, type, name, pid, system_default, url, level, owner, order_num, created, 
+    updated, yn, code, icon, target, html_code
+  </sql>
+  <sql id="QUERY_WHERE">
+    <where>
+      <![CDATA[ yn = 1]]>
+      <if test="id != null"><![CDATA[AND code = #{id}]]></if>
+      <if test="platformId != null"><![CDATA[AND platform_id = #{platformId}]]></if>
+      <if test="type != null and type !=''"><![CDATA[AND type = #{type}]]></if>
+      <if test="name != null and name !=''"><![CDATA[AND name = #{name}]]></if>
+      <if test="pid != null"><![CDATA[AND pid = #{pid}]]></if>
+      <if test="systemDefault != null"><![CDATA[AND system_default = #{systemDefault}]]></if>
+      <if test="url != null and url !=''"><![CDATA[AND url = #{url}]]></if>
+      <if test="level != null"><![CDATA[AND level = #{level}]]></if>
+      <if test="owner != null and owner !=''"><![CDATA[AND owner = #{owner}]]></if>
+      <if test="orderNum != null"><![CDATA[AND order_num = #{orderNum}]]></if>
+      <if test="created != null and created !=''"><![CDATA[AND created = #{created}]]></if>
+      <if test="updated != null and updated !=''"><![CDATA[AND updated = #{updated}]]></if>
+      <if test="code != null and code !=''"><![CDATA[AND code = #{code}]]></if>
+      <if test="icon != null and icon !=''"><![CDATA[AND icon = #{icon}]]></if>
+      <if test="target != null and target !=''"><![CDATA[AND target = #{target}]]></if>
+      <if test="htmlCode != null and htmlCode !=''"><![CDATA[AND html_code = #{htmlCode}]]></if>
+    </where>
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from resource
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from resource
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.domain.resource">
+    insert into resource (id, platform_id, type, 
+      name, pid, system_default, 
+      url, level, owner, 
+      order_num, created, updated, 
+      yn, code, icon, target, 
+      html_code)
+    values (#{id,jdbcType=BIGINT}, #{platformId,jdbcType=BIGINT}, #{type,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{pid,jdbcType=BIGINT}, #{systemDefault,jdbcType=TINYINT}, 
+      #{url,jdbcType=VARCHAR}, #{level,jdbcType=TINYINT}, #{owner,jdbcType=VARCHAR}, 
+      #{orderNum,jdbcType=INTEGER}, #{created,jdbcType=TIMESTAMP}, #{updated,jdbcType=TIMESTAMP}, 
+      #{yn,jdbcType=TINYINT}, #{code,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR}, #{target,jdbcType=VARCHAR}, 
+      #{htmlCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.domain.resource">
+    insert into resource
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="platformId != null">
+        platform_id,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="pid != null">
+        pid,
+      </if>
+      <if test="systemDefault != null">
+        system_default,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+      <if test="level != null">
+        level,
+      </if>
+      <if test="owner != null">
+        owner,
+      </if>
+      <if test="orderNum != null">
+        order_num,
+      </if>
+      <if test="created != null">
+        created,
+      </if>
+      <if test="updated != null">
+        updated,
+      </if>
+      <if test="yn != null">
+        yn,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="icon != null">
+        icon,
+      </if>
+      <if test="target != null">
+        target,
+      </if>
+      <if test="htmlCode != null">
+        html_code,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="platformId != null">
+        #{platformId,jdbcType=BIGINT},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null">
+        #{pid,jdbcType=BIGINT},
+      </if>
+      <if test="systemDefault != null">
+        #{systemDefault,jdbcType=TINYINT},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null">
+        #{level,jdbcType=TINYINT},
+      </if>
+      <if test="owner != null">
+        #{owner,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNum != null">
+        #{orderNum,jdbcType=INTEGER},
+      </if>
+      <if test="created != null">
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updated != null">
+        #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="yn != null">
+        #{yn,jdbcType=TINYINT},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null">
+        #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="target != null">
+        #{target,jdbcType=VARCHAR},
+      </if>
+      <if test="htmlCode != null">
+        #{htmlCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.domain.resource">
+    update resource
+    <set>
+      <if test="platformId != null">
+        platform_id = #{platformId,jdbcType=BIGINT},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null">
+        pid = #{pid,jdbcType=BIGINT},
+      </if>
+      <if test="systemDefault != null">
+        system_default = #{systemDefault,jdbcType=TINYINT},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null">
+        level = #{level,jdbcType=TINYINT},
+      </if>
+      <if test="owner != null">
+        owner = #{owner,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNum != null">
+        order_num = #{orderNum,jdbcType=INTEGER},
+      </if>
+      <if test="created != null">
+        created = #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updated != null">
+        updated = #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="yn != null">
+        yn = #{yn,jdbcType=TINYINT},
+      </if>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null">
+        icon = #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="target != null">
+        target = #{target,jdbcType=VARCHAR},
+      </if>
+      <if test="htmlCode != null">
+        html_code = #{htmlCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.domain.resource">
+    update resource
+    set platform_id = #{platformId,jdbcType=BIGINT},
+      type = #{type,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      pid = #{pid,jdbcType=BIGINT},
+      system_default = #{systemDefault,jdbcType=TINYINT},
+      url = #{url,jdbcType=VARCHAR},
+      level = #{level,jdbcType=TINYINT},
+      owner = #{owner,jdbcType=VARCHAR},
+      order_num = #{orderNum,jdbcType=INTEGER},
+      created = #{created,jdbcType=TIMESTAMP},
+      updated = #{updated,jdbcType=TIMESTAMP},
+      yn = #{yn,jdbcType=TINYINT},
+      code = #{code,jdbcType=VARCHAR},
+      icon = #{icon,jdbcType=VARCHAR},
+      target = #{target,jdbcType=VARCHAR},
+      html_code = #{htmlCode,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
